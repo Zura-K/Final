@@ -1,33 +1,23 @@
 package services;
 
-import dto.ProductSearchParams;
-import entities.Category;
-import entities.Maker;
 import entities.Product;
 import entities.Sales;
 import exceptions.NotFoundException;
+import org.springframework.stereotype.Service;
 import repositories.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class ProductServiceImplementation implements ProductService{
 
-    private final CategoryRepository categoryRepository;
-    private final MakerRepository makerRepository;
     private final ProductRepository productRepository;
-    private final PurchasesRepository purchasesRepository;
     private final SalesRepository salesRepository;
 
-    private final ProductService productService;
-
-    public ProductServiceImplementation(CategoryRepository categoryRepository, MakerRepository makerRepository, ProductRepository productRepository, PurchasesRepository purchasesRepository, SalesRepository salesRepository, ProductService productService) {
-        this.categoryRepository = categoryRepository;
-        this.makerRepository = makerRepository;
+    public ProductServiceImplementation(ProductRepository productRepository, SalesRepository salesRepository) {
         this.productRepository = productRepository;
-        this.purchasesRepository = purchasesRepository;
         this.salesRepository = salesRepository;
-        this.productService = productService;
     }
 
     @Override

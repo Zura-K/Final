@@ -35,6 +35,9 @@ public class User implements interfaces.UserInterface {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "activity", nullable = false)
+    private Boolean active;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();

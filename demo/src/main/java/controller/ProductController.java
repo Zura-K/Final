@@ -1,8 +1,7 @@
 package controller;
 
-import dto.ProductSearchParams;
 import entities.Product;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,18 +11,12 @@ import services.ProductService;
 import javax.validation.Valid;
 import java.util.List;
 
-import static entities.Product_.id;
-
 @RestController
 @RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
-
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     @PreAuthorize("hasRole('RoleManager') or hasRole('RoleSalesman')")
     @GetMapping

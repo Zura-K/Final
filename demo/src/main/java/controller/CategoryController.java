@@ -1,40 +1,44 @@
 package controller;
 
 import entities.Category;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import repositories.CategoryRepository;
+import services.CategoryService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
+@RequiredArgsConstructor
 public class CategoryController {
+
+    private final CategoryRepository categoryRepository;
+
+    private final CategoryService categoryServices;
 
     @GetMapping
     public List<Category> getAllCategories() {
-        // Implementation to retrieve all categories from database
-        return null;
+        return categoryServices.getAllCategories();
     }
 
     @GetMapping("/{id}")
     public Category getCategoryById(@PathVariable Integer id) {
-        // Implementation to retrieve category by id from database
-        return null;
+        return categoryServices.getCategoryById(id);
     }
 
     @PostMapping
     public Category addCategory(@RequestBody Category category) {
-        // Implementation to add a new category to database
-        return null;
+        return categoryServices.addCategory(category);
     }
 
     @PutMapping("/{id}")
     public Category updateCategory(@PathVariable Integer id, @RequestBody Category category) {
-        // Implementation to update an existing category in database
-        return null;
+        return categoryServices.updateCategory(id,category);
     }
 
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable Integer id) {
-        // Implementation to delete a category from database
+        categoryRepository.deleteById(id);
     }
 }

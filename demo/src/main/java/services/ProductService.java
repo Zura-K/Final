@@ -1,6 +1,5 @@
 package services;
 
-import dto.ProductSearchParams;
 import entities.Product;
 
 import java.util.List;
