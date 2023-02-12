@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "makerIdGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoryIdGenerator")
     private Integer id;
 
     @Column(name = "parent_id")
