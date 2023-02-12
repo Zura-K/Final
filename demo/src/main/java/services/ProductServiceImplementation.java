@@ -5,7 +5,7 @@ import entities.Category;
 import entities.Maker;
 import entities.Product;
 import entities.Sales;
-import exceptions.ShopExceptions;
+import exceptions.NotFoundException;
 import repositories.*;
 
 import java.time.LocalDateTime;
@@ -32,7 +32,7 @@ public class ProductServiceImplementation implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        return productRepository.findAll();
     }
 
     @Override
@@ -42,9 +42,8 @@ public class ProductServiceImplementation implements ProductService{
 
     @Override
     public Product getProduct(String ENACode) {
-        Product product = productRepository.findByENAcode(ENACode).orElse(null);
+        return productRepository.findByENAcode(ENACode).orElseThrow (() -> new NotFoundException("Product not found"));
 
-        return product;
     }
 
     @Override
